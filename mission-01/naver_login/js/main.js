@@ -3,6 +3,15 @@ const user = {
   pw: "spdlqj123!@",
 };
 
+/*
+요구사항
+1. email 정규표현식을 사용한 validation
+2. pw 정규표현식을 사용한 validation
+3. 상태 변수 관리
+4. 로그인 버튼을 클릭시 조건처리
+
+*/
+
 // querySelector
 const userEmail = document.querySelector("#userEmail");
 const userPassword = document.querySelector("#userPassword");
@@ -16,7 +25,7 @@ function emailReg(text) {
   return re.test(String(text).toLowerCase());
 }
 
-function handleInputEmail() {
+function validateEmail() {
   if (!emailReg(userEmail.value)) {
     userEmail.classList.add("is--invalid");
   } else {
@@ -24,7 +33,7 @@ function handleInputEmail() {
   }
 }
 
-userEmail.addEventListener("input", handleInputEmail);
+userEmail.addEventListener("input", validateEmail);
 
 // 2. pw 정규표현식을 사용한 validation
 function pwReg(text) {
@@ -32,7 +41,7 @@ function pwReg(text) {
   return re.test(String(text).toLowerCase());
 }
 
-function handleInputPw() {
+function validatePw() {
   if (!pwReg(userPassword.value)) {
     userPassword.classList.add("is--invalid");
   } else {
@@ -40,4 +49,14 @@ function handleInputPw() {
   }
 }
 
-userPassword.addEventListener("input", handleInputPw);
+userPassword.addEventListener("input", validatePw);
+
+// 3. 로그인 버튼을 클릭시 user.id의 값과 input의 값을 비교
+let emailSubmit = userEmail.value === user.id;
+let pwSubmit = userPassword.value === user.pw;
+
+function handleSubmit() {
+  if (userEmail && userPassword) {
+    window.location.href = "welcome.html";
+  }
+}
