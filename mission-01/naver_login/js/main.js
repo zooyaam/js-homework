@@ -8,7 +8,7 @@ const userEmail = document.querySelector("#userEmail");
 const userPassword = document.querySelector("#userPassword");
 const button = document.querySelector(".btn-login");
 
-// 1. email 정규표현식을 사용한 validation
+// email과 password의 정규표현식
 function emailReg(text) {
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -16,6 +16,12 @@ function emailReg(text) {
   return re.test(String(text).toLowerCase());
 }
 
+function pwReg(text) {
+  const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{6,16}$/;
+  return re.test(String(text).toLowerCase());
+}
+
+// 1. email 정규표현식을 사용한 validation
 function validateEmail() {
   if (!emailReg(userEmail.value)) {
     userEmail.classList.add("is--invalid");
@@ -27,11 +33,6 @@ function validateEmail() {
 userEmail.addEventListener("input", validateEmail);
 
 // 2. pw 정규표현식을 사용한 validation
-function pwReg(text) {
-  const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{6,16}$/;
-  return re.test(String(text).toLowerCase());
-}
-
 function validatePw() {
   if (!pwReg(userPassword.value)) {
     userPassword.classList.add("is--invalid");
@@ -57,3 +58,7 @@ function handleSubmit() {
 }
 
 button.addEventListener("click", handleSubmit);
+
+validateEmail();
+validatePw();
+idPwInput();
