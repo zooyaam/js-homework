@@ -51,12 +51,18 @@ function validatePw() {
 
 userPassword.addEventListener("input", validatePw);
 
-// 3. 로그인 버튼을 클릭시 user.id의 값과 input의 값을 비교
+// 3. 로그인 버튼을 클릭시 조건처리
 let emailSubmit = userEmail.value === user.id;
 let pwSubmit = userPassword.value === user.pw;
 
 function handleSubmit() {
-  if (userEmail && userPassword) {
+  if (emailSubmit && pwSubmit) {
     window.location.href = "welcome.html";
+  } else if (!emailSubmit) {
+    alert("이메일을 다시 입력하세요");
+  } else if (!pwSubmit) {
+    alert("비밀번호를 다시 입력하세요");
   }
 }
+
+button.addEventListener("click", handleSubmit);
