@@ -3,15 +3,6 @@ const user = {
   pw: "spdlqj123!@",
 };
 
-/*
-요구사항
-1. email 정규표현식을 사용한 validation
-2. pw 정규표현식을 사용한 validation
-3. 상태 변수 관리
-4. 로그인 버튼을 클릭시 조건처리
-
-*/
-
 // querySelector
 const userEmail = document.querySelector("#userEmail");
 const userPassword = document.querySelector("#userPassword");
